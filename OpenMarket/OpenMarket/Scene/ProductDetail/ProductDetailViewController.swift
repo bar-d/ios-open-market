@@ -11,8 +11,8 @@ final class ProductDetailViewController: UIViewController {
     // MARK: - properties
     
     private var productID: String?
-    
-    private var productImageCollectionView: UICollectionView!
+    private var layout = UICollectionViewFlowLayout()
+    private lazy var productImageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     
     // MARK: - life cycle
     
@@ -86,28 +86,15 @@ final class ProductDetailViewController: UIViewController {
     }
     
     private func setupProductImageCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        
         layout.itemSize = CGSize(width: view.safeAreaLayoutGuide.layoutFrame.width,
                                  height: view.safeAreaLayoutGuide.layoutFrame.height/2)
         layout.scrollDirection = .horizontal
         
-        productImageCollectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: layout)
-        productImageCollectionView?.translatesAutoresizingMaskIntoConstraints = false
-        
-        let insetX = (productImageCollectionView.bounds.width - productImageCollectionView.frame.width) / 2.0
-        let insetY = (productImageCollectionView.bounds.height - productImageCollectionView.frame.height/3) / 2.0
-        
-        productImageCollectionView.contentInset = UIEdgeInsets(top: insetY,
-                                                               left: insetX,
-                                                               bottom: insetY,
-                                                               right: insetX)
-        
-        productImageCollectionView?.register(ProductImageCell.self,
+        productImageCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        productImageCollectionView.register(ProductImageCell.self,
                                 forCellWithReuseIdentifier: ProductImageCell.identifier)
         productImageCollectionView.isPagingEnabled = true
-        productImageCollectionView?.dataSource = self
+        productImageCollectionView.dataSource = self
     }
     
     @objc private func rightBarButtonDidTap() {
