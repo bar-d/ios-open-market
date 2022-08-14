@@ -11,7 +11,7 @@
 - [프로젝트 소개](#프로젝트-소개)
 - [UML](#UML)
 - [폴더 구조](#폴더-구조)
-- [구현내용](#구현내용)
+- [구현화면](#구현내용)
 - [키워드](#키워드)
 - [참고문서](#참고문서)
 - [핵심경험](#핵심경험)
@@ -23,7 +23,7 @@
 ## 개발자 소개
 |바드|그루트|
 |:---:|:---:|
-| <img src = "https://i.imgur.com/k9hX1UH.png" width="250" height="250">| <img src = "https://i.imgur.com/Cxc3e7j.jpg" width="250" height="250"> |
+| <img src = "https://i.imgur.com/k9hX1UH.png" width="250" height="250">| <img src = "https://i.imgur.com/onBeySC.jpg" width="250" height="250"> |
 |[바드](https://github.com/bar-d)|[그루트](https://github.com/Groot-94)|
 
 
@@ -33,68 +33,98 @@
 
 ## UML
 ### [ClassDiagram]
-![](https://i.imgur.com/oAYPB70.jpg)
+![](https://i.imgur.com/Uqx3FVq.jpg)
 
 ## 폴더 구조
 ```
 ├── OpenMarket
 │   ├── OpenMarket
-│   │   ├── Controller
-│   │   │   ├── OpenMarketViewController.swift
-│   │   │   ├── ProductRegistrationViewController.swift
-│   │   │   └── ProductUpdateViewController.swift
-│   │   ├── Model
-│   │   │   ├── Data
-│   │   │   │   ├── ImageCacheManager.swift
-│   │   │   │   ├── OpenMarketRepository.swift
-│   │   │   │   └── OpenMarketRequest.swift
-│   │   │   ├── Enum
-│   │   │   │   ├── Currency.swift
-│   │   │   │   ├── NameSpace.swift
-│   │   │   │   └── Section.swift
-│   │   │   ├── Error
-│   │   │   │   ├── CodableError.swift
-│   │   │   │   ├── DataError.swift
-│   │   │   │   └── NetworkError.swift
-│   │   │   ├── Extension
-│   │   │   │   ├── Data+extension.swift
-│   │   │   │   ├── Double+extension.swift
-│   │   │   │   └── UIView+extension.swift
-│   │   │   ├── JSONModel
-│   │   │   │   ├── ProductDetail.swift
-│   │   │   │   ├── ProductImage.swift
-│   │   │   │   ├── ProductsDetailList.swift
-│   │   │   │   ├── ProductsList.swift
-│   │   │   │   ├── RegisterationProduct.swift
-│   │   │   │   └── SecretProducts.swift
-│   │   │   └── Network
-│   │   │       ├── APIRequest.swift
-│   │   │       ├── MyURLSession.swift
-│   │   │       └── SessionProtocol.swift
+│   │   ├── DataManager
+│   │   │   ├── ImageCacheManager.swift
+│   │   │   └── OpenMarketManager.swift
+│   │   ├── Enum
+│   │   │   ├── Currency.swift
+│   │   │   └── NameSpace.swift
+│   │   ├── Error
+│   │   │   ├── CodableError.swift
+│   │   │   ├── DataError.swift
+│   │   │   └── NetworkError.swift
+│   │   ├── Extension
+│   │   │   ├── Data+extension.swift
+│   │   │   ├── Double+extension.swift
+│   │   │   ├── UIImage+extension.swift
+│   │   │   └── UIView+extension.swift
+│   │   ├── JSONModel
+│   │   │   ├── ProductDetail.swift
+│   │   │   ├── ProductImage.swift
+│   │   │   ├── ProductInformation.swift
+│   │   │   ├── ProductsList.swift
+│   │   │   ├── RegisterationProduct.swift
+│   │   │   ├── SecretProducts.swift
+│   │   │   └── Vendors.swift
+│   │   ├── Network
+│   │   │   ├── APIRequest.swift
+│   │   │   ├── MyURLSession.swift
+│   │   │   └── SessionProtocol.swift
+│   │   ├── OpenMarketRequest
+│   │   │   ├── ImageGetRequest.swift
+│   │   │   ├── ProductDeleteRequest.swift
+│   │   │   ├── ProductGetRequest.swift
+│   │   │   ├── ProductPatchRequest.swift
+│   │   │   ├── ProductPostRequest.swift
+│   │   │   └── RequestConfiguration
+│   │   │       ├── HTTPHeaders.swift
+│   │   │       ├── URLAdditionalPath.swift
+│   │   │       └── URLHost.swift
+│   │   ├── Protocol
+│   │   │   └── DataSendable.swift
 │   │   ├── Resources
 │   │   │   ├── AppDelegate.swift
-│   │   │   ├── Info.plist
 │   │   │   └── SceneDelegate.swift
-│   │   ├── TestDouble
-│   │   │   └── MockSession.swift
-│   │   └── View
-│   │       ├── Base.lproj
-│   │       │   └── LaunchScreen.storyboard
-│   │       ├── GridCollecntionView.swift
-│   │       ├── GridCollectionViewCell.swift
-│   │       ├── ListCollectionView.swift
-│   │       ├── ListCollectionViewCell.swift
-│   │       ├── ProductRegistrationView.swift
-│   │       └── ProductUpdateView.swift
+│   │   │   ├──  Info.plist
+│   │   │   Assets.xcassets
+│   │   │       └── MockData.dataset
+│   │   │           ├── Contents.json
+│   │   │           └── MockData.json
+│   │   ├── Scene
+│   │   │   ├── Model
+│   │   │   ├── ProductDetail
+│   │   │   │   ├── ProductDetailViewController.swift
+│   │   │   │   └── View
+│   │   │   │       ├── ProductDetailView.swift
+│   │   │   │       └── ProductImageCell.swift
+│   │   │   ├── ProductList
+│   │   │   │   ├── Controller
+│   │   │   │   │   └── ProductListViewController.swift
+│   │   │   │   ├── Model
+│   │   │   │   │   └── Enum
+│   │   │   │   │       ├── ProductListNameSpace.swift
+│   │   │   │   │       └── Section.swift
+│   │   │   │   └── View
+│   │   │   │       ├── GridCollecntionView.swift
+│   │   │   │       ├── GridCollectionViewCell.swift
+│   │   │   │       ├── ListCollectionView.swift
+│   │   │   │       └── ListCollectionViewCell.swift
+│   │   │   ├── ProductRegistration
+│   │   │   │   ├── Controller
+│   │   │   │   │   └── ProductRegistrationViewController.swift
+│   │   │   │   ├── Model
+│   │   │   │   │   └── ProductRegistrationManager.swift
+│   │   │   │   └── View
+│   │   │   │       └── ProductRegistrationView.swift
+│   │   │   └── ProductUpdate
+│   │   │       └── Model
+│   │   │           ├── ProductUpdateManager.swift
+│   │   │           ├── ProductUpdateView.swift
+│   │   │           └── ProductUpdateViewController.swift
+│   │   └── TestDouble
+│   │       └── MockSession.swift
 │   └── OpenMarketTests
 │       ├── ParsingTests.swift
 │       └── RequestTests.swift
 └── README.md
 ```
-
-
-
-## 구현내용  
+## 구현화면
 |||
 |:---:|:---:|
 |레이아웃 변경 화면|화면 스크롤|
@@ -105,6 +135,10 @@
 | <img src = "https://i.imgur.com/kBW2zhO.gif" width="300" height="600">| <img src = "https://i.imgur.com/HDMGd5o.gif" width="300" height="600"> |
 |사진 등록 스크롤뷰 구현|등록 형식을 못맞췄을 때|
 | <img src = "https://i.imgur.com/GJhqacZ.gif" width="300" height="600">| <img src = "https://i.imgur.com/UqO0PZa.gif" width="300" height="600"> |
+|상품 삭제 구현|상품 수정 구현|
+|<img src = "https://i.imgur.com/5U1bgBG.gif" width="300" height="600">|<img src = "https://i.imgur.com/OJpYfei.gif" width="300" height="600">|
+|상품삭제 비밀번호 틀렸을 때|수정할 때 형식 못맞췃을때|
+|<img src = "https://i.imgur.com/WLYIcMC.gif" width="300" height="600">|<img src = "https://i.imgur.com/iLY8who.gif" width="300" height="600">|
 
 ## 키워드
 - JSON Decoder
@@ -125,8 +159,9 @@
 - UITextView
 - UITextViewDelegate
 - Keyboard
-- UIAlertControl
+- UIAlertController
 - multipart-form/data
+- UICollectionView Pagination
 ## 참고문서
 - [URLSession](https://developer.apple.com/documentation/foundation/urlsession)
     - [Fetching Website Data into Memory](https://developer.apple.com/documentation/foundation/url_loading_system/fetching_website_data_into_memory)
@@ -148,6 +183,7 @@
 - [x] 데이터 비동기 처리를 통한 앱 성능 최적화 경험을 할 수 있었다.
 - [x] multipart/form-data의 구조를 사용해서 POST 하여 데이터를 서버로 올리는 경험을 할 수 있었다. 
 - [x] TextField, TextView로 키보드를 사용하는 경험을 할 수 있었다.
+- [X] UICollectionView를 활용해 여러가지 스크롤 방식을 경험할 수 있었다. 
 ## 기능설명
 ### Network
 - **`네트워크 통신을 하는데 필요한 타입들 구현`**
@@ -161,10 +197,11 @@
     - Currency
     - ProductDetail
     - ProductImage
-    - ProductsDetailList
+    - ProductInformation
     - ProductsList
     - RegistrationProduct
     - SecretProducts
+    - Vendors
 
 ### Error
 - **`Error 처리를 하기 위해 각 타입별로 Error 타입들 구현`**
@@ -175,24 +212,46 @@
 ### TestDouble
 - **`URLSession 테스트를 하기위한 MockSession 타입 구현`**
     - MockSession
-
 ### OpenMarketTests
 - **`OpenMarket 모듈들의 Unit Test를 위한 타입 구현`**
     - ParsingTests
     - RequestTests
-### UICollectionView
-- **`데이터를 표시하는 컬렉션 뷰`**
+### DataSendable
+- **`delegate 패턴을 이용해 Controller 간 데이터를 전달하기 위한 Protocol 구현`**
+### Scene
+#### 1. ProductList
+##### ProductListView
+- **`상품을 표시하는 컬렉션 뷰`**
     - Mordern Collection View 방식의 List Configuration을 활용한 List layout 컬렉션 뷰
     - Mordern Collection View 방식의 Compositional Layout 활용한 Grid layout 컬렉션 뷰
-### UISegmentedControl
-- **`UISegmentedControl을 통한 화면 전환`**
-### UIActivityIndicatorView
+##### UISegmentedControl
+- **`UISegmentedControl을 통한 List, Grid 레이아웃 화면 전환`**
+##### UIActivityIndicatorView
 - **`로딩 상태를 나타내기 위한 비동기식 뷰 구현`**
-### UIRefreshControl
+##### UIRefreshControl
 - **`데이터의 새로고침 기능을 구현하기 위한 UIRefreshControl 사용`**
-### UIImagePickerController
+
+#### 2. ProductRegistration
+##### ProductRegistrationManager
+- **`서버로 상품정보를 보내기 위한 Post 모델 구현`**
+##### ProductRegistrationView
+- **`상품정보를 입력받는 뷰 구현`**
+##### UIImagePickerController
 - **`사진첩에서 이미지를 가져오는 기능을 구현`**
 
+#### 3. ProductUpdate
+##### ProductUpdateManager
+- **`상품정보를 수정하기 위한 Patch 모델 구현`**
+##### ProductUpdateView
+- **`수정이 필요한 상품정보를 입력받는 뷰 구현`**
+
+#### 4. ProductDetail
+##### UIAlertController
+- **`상품의 시크릿 넘버를 입력받아 상품을 삭제할 수 있는 경고창 구현`**
+##### ProductDetailView
+- **`상품의 상세정보를 보여주기 위한 뷰 구현`**
+##### ProductImageCell
+- **`상품의 image들을 페이지 넘김으로 보여주기 위한 UICollectionCell 구현`**
 ## [TroubleShooting_Wiki](https://github.com/bar-d/ios-open-market/wiki/TroubleShooting)
 ## [1️⃣ Step1_Wiki](https://github.com/bar-d/ios-open-market/wiki/Step1)
 ## [2️⃣ Step2_Wiki](https://github.com/bar-d/ios-open-market/wiki/Step2)
